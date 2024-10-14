@@ -8,11 +8,13 @@
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="CurrConverter">
-    
-    
     <StackPanel>
+        <ComboBox ItemsSource="{Binding AvailableCurrencies}" SelectedItem="{Binding FromCurrency}" />
+        <ComboBox ItemsSource="{Binding AvailableCurrencies}" SelectedItem="{Binding ToCurrency}" />
+        <TextBox Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}" />
         <Button Content="Convert" Command="{Binding ConvertCommand}" />
         <TextBlock Text="{Binding Result}" />
     </StackPanel>
+
 
 </Window>

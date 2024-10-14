@@ -5,58 +5,45 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using Newtonsoft.Json;
 
-namespace CurrConverter.ViewModels
-{
-    public class MainWindowViewModel : ViewModelBase
-    {
-        private static readonly HttpClient HttpClient = new HttpClient();
-        
-        private string? _result; // Make _result nullable
-        public string? Result
+namespace CurrConverter.ViewModels {
+    public class MainWindowViewModel : ViewModelBase {
+        private static readonly HttpClient HttpClient = new();
+
+        public string? Result { get; set; }
+        public RelayCommand ConvertCommand { get; set; }
+        public string? FromCurrency { get; set; }
+        public string? ToCurrency { get; set; }
+        public double? Amount { get; set; }
+        public List<string> AvailableCurrencies { get; set; }
+
+        public MainWindowViewModel(List<string> availableCurrencies)
         {
-            get => _result;
-            set => SetProperty(ref _result, value);
+            AvailableCurrencies = availableCurrencies;
+            ConvertCommand = new RelayCommand(ConvertCurrencyAsync);
         }
 
-        private RelayCommand? _convertCommand; // Make _convertCommand nullable
-        public RelayCommand ConvertCommand => _convertCommand ??= new RelayCommand(ConvertCurrencyAsync); // Remove async lambda
-
-        private async void ConvertCurrencyAsync() // Change return type to void
+        private async void ConvertCurrencyAsync()
         {
-            var fromCurrency = "USD";
-            var toCurrency = "UAH";
-            var amount = 1.0;
+            if (FromCurrency == null || ToCurrency == null || Amount == null)
+            {
+                Result = "Please select currencies and input amount";
+                return;
+            }
 
             try
             {
-                var url = $"https://api.exchangerate-api.com/v4/latest/{fromCurrency}";
-                var apiResponse = await GetApiResponseAsync(url);
+                var apiResponse = await GetApiResponseAsync($"https://api.exchangerate-api.com/v4/latest/{FromCurrency}");
 
-                if (apiResponse?.Rates != null && apiResponse.Rates.TryGetValue(toCurrency, out var rate))
-                {
-                    var convertedAmount = amount * rate;
-                    Result = $"{amount} {fromCurrency} = {convertedAmount:F2} {toCurrency} (Rate: {rate})";
-                }
-                else
-                {
-                    throw new Exception($"Неизвестная пара валют: {fromCurrency} в {toCurrency}.");
-                }
-            }
-            catch (Exception ex)
-            {
-                Result = ex.Message;
-            }
+                if (apiResponse?.Rates != null && apiResponse.Rates.TryGetValue(ToCurrency, out var rate)) {
+                    Result = $"{Amount:F2} {FromCurrency} = {Amount.Value * rate:F2} {ToCurrency} (Rate: {rate})";
+                }else { throw new Exception($"Unknown currency pair: {FromCurrency} to {ToCurrency}."); }
+            } catch (Exception ex) { Result = ex.Message; }
         }
 
-        private static async Task<ExchangeRateApiResponse?> GetApiResponseAsync(string url)
-        {
-            var jsonResponse = await HttpClient.GetStringAsync(url);
-            return JsonConvert.DeserializeObject<ExchangeRateApiResponse>(jsonResponse);
+        private static async Task<ExchangeRateApiResponse?> GetApiResponseAsync(string url) { 
+            return JsonConvert.DeserializeObject<ExchangeRateApiResponse>(await HttpClient.GetStringAsync(url));
         }
 
-        public class ExchangeRateApiResponse
-        {
-            public Dictionary<string, double>? Rates { get; set; } // Make Rates nullable
-        }
+        public class ExchangeRateApiResponse { public Dictionary<string, double>? Rates { get; set; } }
     }
 }

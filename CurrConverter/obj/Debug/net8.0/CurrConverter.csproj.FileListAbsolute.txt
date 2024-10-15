@@ -72,3 +72,4 @@
 /home/andrijzyn/RiderProjects/CurrConverter/CurrConverter/bin/Debug/net8.0/ReactiveUI.dll
 /home/andrijzyn/RiderProjects/CurrConverter/CurrConverter/bin/Debug/net8.0/Splat.dll
 /home/andrijzyn/RiderProjects/CurrConverter/CurrConverter/bin/Debug/net8.0/System.Reactive.dll
+/home/andrijzyn/RiderProjects/CurrConverter/CurrConverter/obj/Debug/net8.0/CurrConverter.sourcelink.json

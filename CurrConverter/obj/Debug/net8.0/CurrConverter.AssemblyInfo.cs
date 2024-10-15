@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CurrConverter")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be6015ad8de00aa751b4028bf567ae491b5dcd4b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+140a3065ad03f1db6efeb42f23d75ef5fd8b201d")]
 [assembly: System.Reflection.AssemblyProductAttribute("CurrConverter")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CurrConverter")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -25,4 +25,8 @@
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
         <PackageReference Include="ReactiveUI" Version="20.1.63" />
     </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Assets\avalonia-logo.ico" />
+    </ItemGroup>
 </Project>

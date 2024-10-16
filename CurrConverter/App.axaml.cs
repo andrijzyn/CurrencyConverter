@@ -18,7 +18,7 @@ public partial class App : Application
             // Without this line you will get duplicate validations from both Avalonia and CT
             BindingPlugins.DataValidators.RemoveAt(0);
             desktop.MainWindow = new MainWindow {
-                DataContext = new MainWindowViewModel(["USD", "UAH", "EUR", "GBP", "JPY", "AUD",  "CAD", "CHF", "CNY", "SEK", $"NZD"]),
+                DataContext = new MainWindowViewModel(),
             };
         }
 

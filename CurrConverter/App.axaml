@@ -8,8 +8,38 @@
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
-  
-    <Application.Styles>
-        <FluentTheme />
-    </Application.Styles>
+             <Application.Styles>
+                 <Style Selector="ComboBox">
+                     <Setter Property="Background" Value="{DynamicResource SystemControlBackgroundBaseLowBrush}"/>
+                     <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
+                     <Setter Property="BorderThickness" Value="1"/>
+                     <Setter Property="Padding" Value="5"/>
+                     <Setter Property="FontSize" Value="14"/>
+                 </Style>
+    
+                 <Style Selector="TextBox">
+                     <Setter Property="Background" Value="{DynamicResource SystemControlBackgroundBaseLowBrush}"/>
+                     <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
+                     <Setter Property="BorderThickness" Value="1"/>
+                     <Setter Property="Padding" Value="5"/>
+                     <Setter Property="FontSize" Value="14"/>
+                     <Setter Property="Watermark" Value="Enter amount"/>
+                 </Style>
+    
+                 <Style Selector="Button">
+                     <Setter Property="Background" Value="Green"/>
+                     <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
+                     <Setter Property="FontSize" Value="14"/>
+                     <Setter Property="FontWeight" Value="Bold"/>
+                     <Setter Property="Padding" Value="10,5"/>
+                     <Setter Property="BorderBrush" Value="Transparent"/>
+                 </Style>
+    
+                 <Style Selector="TextBlock">
+                     <Setter Property="FontSize" Value="16"/>
+                     <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
+                     <Setter Property="HorizontalAlignment" Value="Center"/>
+                 </Style>
+                 <FluentTheme />
+             </Application.Styles>
 </Application>

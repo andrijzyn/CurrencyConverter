@@ -3,17 +3,36 @@
         xmlns:vm="using:CurrConverter.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="150"
+        Width="300" Height="150" 
         x:Class="CurrConverter.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Title="CurrConverter">
-    <StackPanel>
-        <ComboBox ItemsSource="{Binding AvailableCurrencies}" SelectedItem="{Binding FromCurrency}" />
-        <ComboBox ItemsSource="{Binding AvailableCurrencies}" SelectedItem="{Binding ToCurrency}" />
-        <TextBox Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}" />
-        <Button Content="Convert" Command="{Binding ConvertCommand}" />
-        <TextBlock Text="{Binding Result}" />
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+        <TextBlock Text="{Binding Result}" 
+                   FontSize="16"
+                   FontWeight="Bold" 
+                   HorizontalAlignment="Center"
+                   Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
+        
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+            <ComboBox ItemsSource="{Binding AvailableCurrencies}" 
+                      SelectedItem="{Binding FromCurrency}" 
+                      MinWidth="100" MaxWidth="100" VerticalAlignment="Center"/>
+            <TextBlock Text="to" FontSize="10" VerticalAlignment="Center"/>
+            <ComboBox ItemsSource="{Binding AvailableCurrencies}" 
+                      SelectedItem="{Binding ToCurrency}" 
+                      MinWidth="100" MaxWidth="100" VerticalAlignment="Center"/>
+        </StackPanel>
+        
+        <TextBox Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}" 
+                 MinWidth="200" MaxWidth="200"
+                 Watermark="Enter amount" />
+        
+        <Button Content="Convert" IsVisible="False"
+                Command="{Binding ConvertCommand}" 
+                HorizontalAlignment="Center" 
+                Padding="10,5"
+                HotKey="Enter"/>
     </StackPanel>
-
-
 </Window>

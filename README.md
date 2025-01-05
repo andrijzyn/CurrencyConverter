@@ -1,4 +1,4 @@
-## 🧮 A ordinary calculator
+## 🧮 An ordinary currency convertor
 > [!NOTE]
 > This project was created for the discipline "OOP".
 
